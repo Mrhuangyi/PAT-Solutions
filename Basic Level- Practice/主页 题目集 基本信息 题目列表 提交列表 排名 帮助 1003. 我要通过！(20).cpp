@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int n,i,j;
+    char a[111];
+    scanf("%d",&n);
+    while(n--)
+    {
+        int x=0,y=0,z=0,flag1=0,flag2=0,flag3=0,len;
+        scanf("%s",a);
+        len=strlen(a);
+        int count1=0,count2=0,count3=0;
+        if(len<3)
+            printf("NO\n");
+            else{
+            if(a[0]=='P'&&a[len-1]=='T'){
+                flag1=1;
+            for(i=1;i<=len-2;i++)
+            {
+                if(a[i]=='A')
+                flag1=1;
+            else
+            {
+                flag1=0;
+                break;
+            }
+        }
+        if(flag1==1)
+            printf("YES\n");
+        else
+            printf("NO\n");
+            }
+        else{
+        if(a[0]=='A')
+            for(i=0;i<len;i++)
+        {
+            if(a[i]=='P')
+                flag2=i;
+            if(a[i]=='T')
+                flag3=i;
+        }
+        for(i=0;i<flag2;i++)
+        {
+            if(a[i]=='A'){
+                x=1;
+                count1++;
+            }
+            else
+            {
+                x=0;
+                break;
+            }
+        }
+        for(i=flag2+1;i<flag3;i++)
+        {
+            if(a[i]=='A'){
+                y=1;
+                count2++;
+            }
+            else
+            {
+                y=0;
+                break;
+            }
+        }
+        for(i=flag3+1;i<len;i++)
+        {
+            if(a[i]=='A'){
+                z=1;
+                count3++;
+            }
+            else
+            {
+                z=0;
+                break;
+            }
+        }
+        if(x==1&&y==1&&z==1&&count1*count2==count3)
+            printf("YES\n");
+        else
+            printf("NO\n");
+            }
+            }
+    }
+    return 0;
+}

@@ -1,0 +1,62 @@
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#include<cstring>
+#include<vector>
+#include<set>
+using namespace std;
+int main(){
+    int n,m,temp,k;
+    scanf("%d %d",&n,&m);
+    vector<set<char>> right(m);
+    vector<int> sum(m),wrongs(m);
+    for(int i=0;i<m;i++){
+        scanf("%d %d %d",&sum[i],&temp,&k);
+        for(int j=0;j<k;j++){
+            char c;
+            scanf(" %c",&c);
+            right[i].insert(c);
+        }
+    }
+    for(int i=0;i<n;i++){
+        int score = 0;
+         getchar();
+        for(int j=0;j<m;j++){
+            if(j!=0){
+                scanf(" ");
+            }
+            scanf("(%d",&k);
+            set<char> st;
+            char d;
+            for(int p=0;p<k;p++){
+                scanf(" %c",&d);
+                st.insert(d);
+            }
+            scanf(")");
+            if(st==right[j]){
+                score+=sum[j];
+            }else{
+            wrongs[j]++;
+            }
+
+        }
+        printf("%d\n",score);
+    }
+    int maxwrong=0;
+    for(int i=0;i<m;i++){
+        if(wrongs[i]>maxwrong){
+            maxwrong=wrongs[i];
+        }
+    }
+    if(maxwrong==0){
+        printf("Too simple");
+    }else{
+        printf("%d",maxwrong);
+        for(int i=0;i<m;i++){
+            if(wrongs[i]==maxwrong){
+                printf(" %d",i+1);
+            }
+        }
+    }
+    return 0;
+}
